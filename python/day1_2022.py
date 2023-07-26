@@ -1,6 +1,6 @@
 #### Import libraries
 
-
+########## Part 1
 #### input is calories on each elf
 file_of_calories = "inputs/day1_input.txt"
 calories = open(file_of_calories, 'r')
@@ -17,5 +17,11 @@ for line in lines:
     else:
         elf_calories += int(line)
 
+elves_holdings.sort(reverse=True)
 #### Print out the highest
-print(max(elves_holdings))
+print(elves_holdings[0])
+
+########### Part 2
+#### Print out the three highest and sum them
+print(elves_holdings[0:3])
+print(sum(elves_holdings[0:3]))

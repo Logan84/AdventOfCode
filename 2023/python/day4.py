@@ -22,19 +22,33 @@ def part1(data):
         points += count
         point_map[i+1] = count
 
-    print(point_map)
     return points
 
 def part2(data):
     points = 0
     global point_map
+    copies = {}
+    for i in range(1, max(point_map.keys())+1):
+        copies[i] = 1
     for k, v in point_map.items():
-        print(k)
-        print(v)
-    return 0
+        card = k
+        points = v
+        for _ in range(copies[card]):
+            temp_card = card
+            temp_points = points
+            while True:
+                if temp_points < 1:
+                    break
+                else:
+                    temp_card += 1
+                    if temp_card not in point_map.keys():
+                        break
+                    temp_points /= 2
+                    copies[temp_card] += 1
+    return sum(copies.values())
 
 
-file = "data/temp.txt"
+file = "data/day4.txt"
 # Get the file read in 
 with open(file, 'r') as f:
     data = f.readlines()
